@@ -60,6 +60,7 @@ Browser Editor <----HTTP----> Node.js Server <----> Local File System
 ---
 
 ## Design Decisions
+<img width="1463" height="705" alt="System Design" src="https://github.com/user-attachments/assets/6a2cbe2e-4510-45d6-af5c-b8b963e3ae1a" />
 
 ### Offline First
 
