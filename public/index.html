@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Smart Office POC</title>
+</head>
+
+<body>
+
+<h2>Smart Office - POC Editor</h2>
+
+<button onclick="loadDoc()">Load</button>
+<button onclick="saveDoc()">Save</button>
+<button onclick="loadTemplate()">Template</button>
+<button onclick="exportPDF()">Export PDF</button>
+
+<div id="editor" contenteditable="true"
+     style="border:1px solid black; padding:10px; height:300px;">
+</div>
+
+<script>
+
+const editor = document.getElementById("editor");
+
+function saveDoc() {
+  fetch("/save", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ content: editor.innerHTML })
+  })
+  .then(() => alert("Document Saved"));
+}
+
+function loadDoc() {
+  fetch("/load")
+    .then(res => res.json())
+    .then(data => {
+      editor.innerHTML = data.content;
+    });
+}
+
+function loadTemplate() {
+  fetch("/template")
+    .then(res => res.json())
+    .then(data => {
+      editor.innerHTML = data.content;
+    });
+}
+
+function exportPDF() {
+  window.print();
+}
+
+loadDoc();
+
+</script>
+
+</body>
+</html>
